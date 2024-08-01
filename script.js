@@ -206,3 +206,49 @@ const findShortestPath = (el) => {
   
   indicatePath(parent, source);
 };
+
+const indicatePath = async (parentArr, src) => {
+  document.getElementsByClassName("path")[0].innerHTML = "";
+  for (i = 0; i < cnt; i++) {
+    let p = document.createElement("p");
+    p.innerText = "Node " + i + " --> " + src;
+    await printPath(parentArr, i, p);
+    p.innerText+=" Minimum Cost:"+minCost[i];
+  }
+};
+
+const printPath = async (parent, j, el_p) => {
+  if (parent[j] === -1) return;
+  await printPath(parent, parent[j], el_p);
+  el_p.innerText = el_p.innerText + " " + j;
+
+  document.getElementsByClassName("path")[0].style.padding = "1rem";
+  document.getElementsByClassName("path")[0].appendChild(el_p);
+
+  //console.log(j,parent[j]);
+
+  if (j < parent[j]) {
+    let tmp = document.getElementById(`line-${j}-${parent[j]}`);
+    await colorEdge(tmp);
+  } else {
+    let tmp = document.getElementById(`line-${parent[j]}-${j}`);
+    await colorEdge(tmp);
+  }
+};
+
+const colorEdge = async (el) => {
+  if (el.style.backgroundColor !== "blue") {
+    await wait(1000);
+    el.style.backgroundColor = "blue";
+    el.style.height = "8px";
+  }
+};
+
+const clearScreen = () => {
+  document.getElementsByClassName("path")[0].innerHTML = "";
+  let lines = document.getElementsByClassName("line");
+  for (line of lines) {
+    line.style.backgroundColor = "#EEE";
+    line.style.height = "5px";
+  }
+};
