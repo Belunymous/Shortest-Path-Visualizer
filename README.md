@@ -17,7 +17,7 @@ This web-based application visualizes the shortest path finding using Dijkstra's
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/Belunymous/Shortest-Path-Visualizer
+   git clone https://github.com/Belunymous/Shortest-Path-Visualizer.git
    ```
 
 2. **Navigate to the Project Directory**
