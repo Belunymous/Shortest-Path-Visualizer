@@ -61,3 +61,18 @@ body {
 .reset-btn {
   margin-left: 12px;
 }
+
+.line {
+  height: 5px;
+  background-color: lemonchiffon;
+  position: absolute;
+  transform-origin: top left;
+  text-align: center;
+  color: #eee;
+  line-height: 2rem;
+}
+.line .edge-weight {
+  padding: 0 10px;
+  width: max-content;
+  margin: auto;
+}
