@@ -252,3 +252,29 @@ const clearScreen = () => {
     line.style.height = "5px";
   }
 };
+
+const resetDrawingArea = () => {
+  blocks.innerHTML = "";
+
+  const p = document.createElement("p");
+  p.classList.add("click-instruction");
+  p.innerHTML = "Click to create node";
+
+  blocks.appendChild(p);
+  document.getElementById("add-edge-enable").disabled = false;
+  document.querySelector(".reset-btn").disabled = true;
+  document.getElementsByClassName("path")[0].innerHTML = "";
+
+  cnt = 0;
+  dist = [];
+  addEdge = false;
+};
+
+const wait = async (t) => {
+  let pr = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("done!");
+    }, t);
+  });
+  res = await pr;
+};
