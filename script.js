@@ -130,3 +130,79 @@ const drawLine = (x1, y1, x2, y2, ar) => {
   document.getElementById(arr[0]).style.backgroundColor = "#333";
   document.getElementById(arr[1]).style.backgroundColor = "#333";
 };
+
+const drawUsingId = (ar) => {
+  if (ar[0] === ar[1]) {
+    document.getElementById(arr[0]).style.backgroundColor = "#333";
+    arr = [];
+    return;
+  }
+  x1 = Number(document.getElementById(ar[0]).style.left.slice(0, -2));
+  y1 = Number(document.getElementById(ar[0]).style.top.slice(0, -2));
+  x2 = Number(document.getElementById(ar[1]).style.left.slice(0, -2));
+  y2 = Number(document.getElementById(ar[1]).style.top.slice(0, -2));
+  drawLine(x1, y1, x2, y2, ar);
+};
+
+
+let minCost = [];
+const findShortestPath = (el) => {
+  let visited = [];
+  let unvisited = [];
+  clearScreen();
+
+  let source = Number(el.previousElementSibling.value);
+  if (source >= cnt || isNaN(source)) {
+    alert("Invalid source");
+    return;
+  }
+  document.getElementById(source).style.backgroundColor = "red";
+  
+  let parent = [];
+  parent[source] = -1;
+  visited = [];
+  for (i = 0; i < cnt; i++) unvisited.push(i);
+
+  
+  let cost = [];
+  for (i = 0; i < cnt; i++) {
+    i === source
+      ? null
+      : dist[source][i]
+      ? (cost[i] = dist[source][i])
+      : (cost[i] = Infinity);
+  }
+  cost[source] = 0;
+
+  
+  
+  minCost[source] = 0;
+
+  
+  while (unvisited.length) {
+    let mini = cost.indexOf(Math.min(...cost));
+   
+    visited.push(mini);
+    unvisited.splice(unvisited.indexOf(mini), 1);
+
+    
+    for (j of unvisited) {
+      if (j === mini) continue;
+      
+      if (cost[j] > dist[mini][j] + cost[mini]) {
+        minCost[j] = dist[mini][j] + cost[mini];
+        cost[j] = dist[mini][j] + cost[mini];
+        parent[j] = mini;
+      } else {
+        minCost[j] = cost[j];
+        
+      }
+    }
+    cost[mini] = Infinity;
+  }
+  console.log("Minimum Cost", minCost);
+  for (i = 0; i < cnt; i++)
+    parent[i] === undefined ? (parent[i] = source) : null;
+  
+  indicatePath(parent, source);
+};
