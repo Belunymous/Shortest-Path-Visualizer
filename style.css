@@ -26,3 +26,38 @@ body {
   pointer-events: none;
   z-index: -10;
 }
+
+.block {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgb(163, 211, 208);
+  border-radius: 50%;
+  margin-top: -3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+.outline-btn {
+  border: 2px solid rgb(102, 216, 159);
+  /* border: none; */
+  background-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  padding: 6px 10px;
+  box-shadow: 1px 2px 3px 1px #333;
+}
+.outline-btn:active {
+  box-shadow: none;
+}
+.outline-btn:disabled {
+  box-shadow: none;
+}
+.reset-btn {
+  margin-left: 12px;
+}
